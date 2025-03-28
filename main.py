@@ -1,11 +1,6 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget
+from PySide6.QtWidgets import QApplication, QMainWindow
 from ui_mainwindow import Ui_MainWindow  # Import converted UI
-from ui_progress import Ui_progressDisplay
-
-class ProgressDisplay(Ui_progressDisplay, QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
+from progress import ProgressDisplay
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
