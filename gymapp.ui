@@ -27,7 +27,7 @@
      <string>progress</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="GoalButton">
+   <widget class="QPushButton" name="goalButton">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -66,6 +66,20 @@
      <string>Profile</string>
     </property>
    </widget>
+   <widget class="QStackedWidget" name="display">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>761</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="home"/>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -73,7 +87,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

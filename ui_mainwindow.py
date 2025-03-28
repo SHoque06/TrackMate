@@ -16,7 +16,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QMainWindow, QMenuBar, QPushButton,
-    QSizePolicy, QStatusBar, QWidget)
+    QSizePolicy, QStackedWidget, QStatusBar, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -28,19 +28,25 @@ class Ui_MainWindow(object):
         self.progressButton = QPushButton(self.centralwidget)
         self.progressButton.setObjectName(u"progressButton")
         self.progressButton.setGeometry(QRect(40, 400, 75, 23))
-        self.GoalButton = QPushButton(self.centralwidget)
-        self.GoalButton.setObjectName(u"GoalButton")
-        self.GoalButton.setGeometry(QRect(190, 400, 75, 23))
+        self.goalButton = QPushButton(self.centralwidget)
+        self.goalButton.setObjectName(u"goalButton")
+        self.goalButton.setGeometry(QRect(190, 400, 75, 23))
         self.logButton = QPushButton(self.centralwidget)
         self.logButton.setObjectName(u"logButton")
         self.logButton.setGeometry(QRect(340, 400, 75, 23))
         self.profileButton = QPushButton(self.centralwidget)
         self.profileButton.setObjectName(u"profileButton")
         self.profileButton.setGeometry(QRect(540, 400, 75, 23))
+        self.display = QStackedWidget(self.centralwidget)
+        self.display.setObjectName(u"display")
+        self.display.setGeometry(QRect(20, 10, 761, 371))
+        self.home = QWidget()
+        self.home.setObjectName(u"home")
+        self.display.addWidget(self.home)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 21))
+        self.menubar.setGeometry(QRect(0, 0, 800, 26))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -48,13 +54,16 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.display.setCurrentIndex(0)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.progressButton.setText(QCoreApplication.translate("MainWindow", u"progress", None))
-        self.GoalButton.setText(QCoreApplication.translate("MainWindow", u"Goals", None))
+        self.goalButton.setText(QCoreApplication.translate("MainWindow", u"Goals", None))
         self.logButton.setText(QCoreApplication.translate("MainWindow", u"LogWorkout", None))
         self.profileButton.setText(QCoreApplication.translate("MainWindow", u"Profile", None))
     # retranslateUi
