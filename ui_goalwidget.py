@@ -15,14 +15,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QListWidget, QListWidgetItem,
-    QPushButton, QSizePolicy, QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QListWidget,
+    QListWidgetItem, QPushButton, QSizePolicy, QWidget)
 
 class Ui_goalwidgetDisplay(object):
+
     def setupUi(self, widget):
         if not widget.objectName():
             widget.setObjectName(u"widget")
-        widget.resize(400, 300)
+        widget.resize(590, 328)
         self.label = QLabel(widget)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(110, 110, 47, 13))
@@ -34,10 +35,14 @@ class Ui_goalwidgetDisplay(object):
         self.addgoal = QPushButton(widget)
         self.addgoal.setObjectName(u"addgoal")
         self.addgoal.setGeometry(QRect(30, 140, 75, 23))
-        
+
         self.removegoal = QPushButton(widget)
         self.removegoal.setObjectName(u"removegoal")
         self.removegoal.setGeometry(QRect(20, 180, 75, 23))
+        
+        self.inputGoal = QLineEdit(widget)
+        self.inputGoal.setObjectName(u"inputGoal")
+        self.inputGoal.setGeometry(QRect(110, 230, 113, 20))
 
         self.retranslateUi(widget)
 
