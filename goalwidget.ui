@@ -26,6 +26,42 @@
     <string>goals</string>
    </property>
   </widget>
+  <widget class="QListWidget" name="goalList">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>90</y>
+     <width>256</width>
+     <height>121</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addgoal">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>add goal</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="removegoal">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>180</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>remove goal</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

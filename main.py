@@ -32,6 +32,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def goalButtonClicked(self):
         self.display.setCurrentWidget(self.goalDisplay)
+        
 
     def logButtonClicked(self):
         self.display.setCurrentWidget(self.logworkoutDisplay)
