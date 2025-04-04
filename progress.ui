@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>progressDisplay</class>
- <widget class="QWidget" name="progressDisplay">
+ <class>ProgressTracker</class>
+ <widget class="QWidget" name="ProgressTracker">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
-    <height>370</height>
+    <width>2000</width>
+    <height>2000</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Fitness Progress Tracker</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>200</y>
-     <width>331</width>
-     <height>181</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>progress display</string>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QComboBox" name="graphSelector">
+     <item>
+      <property name="text">
+       <string>1RM Progress</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Body Weight</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="graphContainer" native="true">
+     <!-- Ensure the graph container expands -->
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>5</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <resources/>
- <connections/>
 </ui>
