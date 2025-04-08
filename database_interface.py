@@ -172,16 +172,26 @@ class Database_():
         self.conn.commit()
 
     def createUser(self, username, password, email):
+        if not isinstance(username, str) or not username.strip():
+            raise ValueError("Username must be a non-empty string.")
+        if not isinstance(password, str) or not password.strip():
+            raise ValueError("Password must be a non-empty string.")
+        if not isinstance(email, str) or "@" not in email or "." not in email:
+            raise ValueError("Invalid email format.")   
         self.cursor.execute("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", (username, password, email))
         self.conn.commit()
 
     def removeUser(self, username):
+        if not isinstance(username, str) or not username.strip():
+            raise ValueError("Username must be a non-empty string.")
         self.cursor.execute("DELETE FROM users WHERE username = ?", (username,))
         self.conn.commit()
 
     def createNewSession(self, user_id=None):
         if user_id is None:
             user_id = self.user_id
+        if not isinstance(user_id, int) or user_id < 1:
+            raise ValueError("User ID must be a positive integer.")
         self.cursor.execute("INSERT INTO sessions (user_id, session_date) VALUES (?, ?)", (user_id, datetime.now()))
         self.conn.commit()
 
@@ -199,13 +209,27 @@ class Database_():
 
     def getExerciseNameIdFromName(self, exercise_name):
         # exercise_name_id, exercise_name, category
+        
+        if not isinstance(exercise_name, str) or not exercise_name.strip():
+            raise ValueError("Exercise name must be a non-empty string."     
         self.cursor.execute("SELECT exercise_name_id FROM exercise_names WHERE exercise_name = ?", (exercise_name,))
+        if not result:
+            raise ValueError(f"Exercise '{exercise_name}' not found in database.")
         return self.cursor.fetchone()[0]
 
     def logExercise(self, exercise_name, sets, reps, weight, user_id=None):
         # need to check that the info given is valid
         if user_id is None:
             user_id = self.user_id
+        if not isinstance(exercise_name, str) or not exercise_name.strip():
+            raise ValueError("Exercise name must be a non-empty string.")
+        if not isinstance(sets, int) or sets <= 0:
+            raise ValueError("Sets must be a positive integer.")
+        if not isinstance(reps, int) or reps <= 0:
+            raise ValueError("Reps must be a positive integer.")
+        if not isinstance(weight, (int, float)) or weight < 0:
+            raise ValueError("Weight must be a non-negative number.")
+        
         last_session_id = self.getAllSessionsByUserId(user_id)[0][0]
         if last_session_id is None:
             raise ValueError("no session found for given user")
@@ -216,6 +240,8 @@ class Database_():
     def logBodyweight(self, weight, user_id=None):
         if user_id is None:
             user_id = self.user_id
+        if not isinstance(weight, (int, float)) or weight <= 0:
+            raise ValueError("Weight must be a positive number.")
         self.cursor.execute("INSERT INTO bodyweight (user_id, bodyweight) VALUES (?, ?)", (user_id, weight))
         self.conn.commit()
 
