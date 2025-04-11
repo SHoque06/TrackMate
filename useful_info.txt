@@ -18,3 +18,11 @@ To create a new UI that is displayed within the display:
         self.progressDisplay = ProgressDisplay()
         self.display.addWidget(self.progressDisplay)
     5. self.display.setCurrentWidget(self.progressDisplay) will change the display to the ui at runtime.
+
+Using github:
+    1. in github desktop, pull any edits from the origin to your local version (generated at the start when you cloned the repository in github desktop)
+    2. edit your local version
+    3. go back on github desktop, hit commit to main.
+    4. if someone else has added something since you last pulled from the origin, you have to pull their changes first.
+    5. push your changes to the main
+    note: only push code to the origin when there are no errors. also, you should commit changes as often as you can without errors. for example, each function you modify during your task should be committed one function at a time to keep the main repo as up to date as possible.
