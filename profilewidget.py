@@ -25,12 +25,15 @@ class profilewidgetDisplay(Ui_profilewidgetDisplay, QWidget):
         user_result = ("n/a","n/a")
 
         # Fetch latest bodyweight entry
-        cursor.execute("""
-            SELECT bodyweight FROM bodyweight 
-            WHERE user_id = ? 
-            ORDER BY bodyweight_date DESC LIMIT 1
-        """, (self.user_id,))
-        weight_result = cursor.fetchone()
+        
+        #cursor.execute("""
+        #    SELECT bodyweight FROM bodyweight 
+        #    WHERE user_id = ? 
+        #    ORDER BY bodyweight_date DESC LIMIT 1
+        #""", (self.user_id,))
+        #weight_result = cursor.fetchone()
+        
+        weight_result = "n/a"
 
         if user_result:
             age, gender = user_result
