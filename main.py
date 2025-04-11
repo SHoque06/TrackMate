@@ -4,11 +4,14 @@ from progress import ProgressDisplay
 from goalwidget import goalwidgetDisplay
 from profilewidget import profilewidgetDisplay
 from logworkout import logworkoutDisplay
+from database_interface import Database, Database_
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)  # Initialize UI
+
+        self.database = Database_()
 
         self.progressDisplay = ProgressDisplay()
         self.display.addWidget(self.progressDisplay)
