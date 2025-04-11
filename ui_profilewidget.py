@@ -22,11 +22,23 @@ class Ui_profilewidgetDisplay(object):
         if not profilewidgetDisplay.objectName():
             profilewidgetDisplay.setObjectName(u"profilewidgetDisplay")
         profilewidgetDisplay.resize(750, 370)
+
         self.label = QLabel(profilewidgetDisplay)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(260, 200, 331, 181))
+        self.label.setGeometry(QRect(260, 20, 331, 40))
+        self.label.setText("Profile")
 
-        self.retranslateUi(profilewidgetDisplay)
+        self.age = QLabel(profilewidgetDisplay)
+        self.age.setObjectName(u"age")
+        self.age.setGeometry(QRect(140, 90, 256, 40))
+
+        self.weight = QLabel(profilewidgetDisplay)
+        self.weight.setObjectName(u"weight")
+        self.weight.setGeometry(QRect(140, 140, 256, 40))
+
+        self.gender = QLabel(profilewidgetDisplay)
+        self.gender.setObjectName(u"gender")
+        self.gender.setGeometry(QRect(140, 190, 256, 40))
 
         QMetaObject.connectSlotsByName(profilewidgetDisplay)
     # setupUi
