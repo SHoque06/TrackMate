@@ -17,6 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QLabel, QSizePolicy, QWidget)
 
+
 class Ui_progressDisplay(object):
     def setupUi(self, progressDisplay):
         if not progressDisplay.objectName():

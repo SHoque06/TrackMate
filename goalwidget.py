@@ -1,26 +1,33 @@
 from PySide6.QtWidgets import QWidget
 from ui_goalwidget import Ui_goalwidgetDisplay
+
+
 class goalwidgetDisplay(Ui_goalwidgetDisplay, QWidget):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
 
+        stufftoadd = ["asd", "asdjas", "nsjdv"] #temporary until attached to database
 
         self.addgoal.clicked.connect(self.add_goal)
         self.removegoal.clicked.connect(self.remove_goal)
         self.inputGoal.setPlaceholderText("Enter your goal")
         self.inputGoal.setVisible(False)
+        self.inputGoal.returnPressed.connect(self.add_goal)
+
+        for i in range(len(stufftoadd)):
+            self.goalList.addItem(stufftoadd[i])
 
     def add_goal(self):
-        if (self.inputGoal.isVisible()):
-        
+        if self.inputGoal.isVisible():
             text = self.inputGoal.text().strip()
-            self.goalList.addItem(text)
-            self.inputGoal.setVisible(False)
-        
+            if text:  # only add non-empty text
+                self.goalList.addItem(text)
+                self.inputGoal.clear()  # clear after adding
+                self.inputGoal.setVisible(False)
         else:
-        
             self.inputGoal.setVisible(True)
+            self.inputGoal.setFocus()  # set focus when showing input
         
         
         
