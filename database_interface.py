@@ -82,11 +82,19 @@ class Database(ABC):
         pass
 
     @abstractmethod
+    def setGender(self, gender):
+        pass
+
+    @abstractmethod
     def getName(self):
         pass
 
     @abstractmethod
     def getAge(self):
+        pass
+
+    @abstractmethod
+    def getGender(self, gender):
         pass
 
 class Database_():
