@@ -26,3 +26,16 @@ Using github:
     4. if someone else has added something since you last pulled from the origin, you have to pull their changes first.
     5. push your changes to the main
     note: only push code to the origin when there are no errors. also, you should commit changes as often as you can without errors. for example, each function you modify during your task should be committed one function at a time to keep the main repo as up to date as possible.
+
+Using the database:
+    Don't use the database directly with SQL code if possible. Use the functions suggested by the IDE pls, just for extra safety.
+    Do not instantiate the database in your own files. Use the one in main.py. Maybe pass it as a parameter? Not sure
+    If the IDE suggests you pass user_id as a parameter, don't do it, or at least pass it as None. This is handled in the database class.
+    Currently, database works as follows (to be changed as program gets developed)
+    - User can log their bodyweights and track their progress. This is largely separate to the rest of the program
+    -- Users can start a new workout or in other words a new session
+    -- Users can then add exercises to that session, including exercise name, sets, reps etc.
+    -- Users can start a new workout by just calling the create new session function.
+    -- Any sort of progress data can easily be added as needed
+
+

@@ -4,14 +4,15 @@ from progress import ProgressDisplay
 from goalwidget import goalwidgetDisplay
 from profilewidget import profilewidgetDisplay
 from logworkout import logworkoutDisplay
-from database_interface import Database, Database_
+from database_interface import Database
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)  # Initialize UI
 
-        self.database = Database_()
+        self.database = Database()
+        QApplication.instance().aboutToQuit.connect(self.close_database)
 
         self.progressDisplay = ProgressDisplay()
         self.display.addWidget(self.progressDisplay)
@@ -29,6 +30,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.goalButton.clicked.connect(self.goalButtonClicked)
         self.logButton.clicked.connect(self.logButtonClicked)
         self.profileButton.clicked.connect(self.profileButtonClicked)
+
+    def close_database(self):
+        # This is called when application is closing
+        if self.database:
+            self.database.close()
+            print("Closed database!") # testing
+        else:
+            print("No database connection to close.")
 
     def progressButtonClicked(self):
         self.display.setCurrentWidget(self.progressDisplay)
