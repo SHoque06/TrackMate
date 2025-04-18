@@ -453,7 +453,16 @@ class Database(AbstractDatabase):
         except sqlite3.Error as e:
             print(f"Database error: {e}")
             return None
+        
+    def getGoals(self):#return list of all goals
+        result = ["asd", "fajdh", "dfjk"]#test data for now
+        return result
+    
+    def setGoal(self, string):#adds a string to be added to the database
+        return
 
+    def updateGoal(self, string):#for when a goal is to be removed from the database
+        return
 
 
 

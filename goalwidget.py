@@ -1,13 +1,15 @@
 from PySide6.QtWidgets import QWidget
 from ui_goalwidget import Ui_goalwidgetDisplay
+from database_interface import Database
 
 
 class goalwidgetDisplay(Ui_goalwidgetDisplay, QWidget):
-    def __init__(self):
+    def __init__(self, database):
         super().__init__()
         self.setupUi(self)
 
-        stufftoadd = ["asd", "asdjas", "nsjdv"] #temporary until attached to database
+        self.db = database
+        stufftoadd = self.db.getGoals()
 
         self.addgoal.clicked.connect(self.add_goal)
         self.removegoal.clicked.connect(self.remove_goal)
@@ -25,6 +27,7 @@ class goalwidgetDisplay(Ui_goalwidgetDisplay, QWidget):
                 self.goalList.addItem(text)
                 self.inputGoal.clear()  # clear after adding
                 self.inputGoal.setVisible(False)
+                self.db.addGoal(text)
         else:
             self.inputGoal.setVisible(True)
             self.inputGoal.setFocus()  # set focus when showing input
@@ -37,3 +40,4 @@ class goalwidgetDisplay(Ui_goalwidgetDisplay, QWidget):
         selected_items = self.goalList.selectedItems()  # Get selected items
         for item in selected_items:
             self.goalList.takeItem(self.goalList.row(item))  # Remove the selected item
+            self.db.updateGoal(item)

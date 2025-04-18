@@ -17,7 +17,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.progressDisplay = ProgressDisplay()
         self.display.addWidget(self.progressDisplay)
 
-        self.goalDisplay = goalwidgetDisplay()
+        self.goalDisplay = goalwidgetDisplay(self.database)
         self.display.addWidget(self.goalDisplay)
 
         self.profileDisplay = profilewidgetDisplay()
@@ -44,6 +44,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def goalButtonClicked(self):
         self.display.setCurrentWidget(self.goalDisplay)
+        
         
 
     def logButtonClicked(self):
