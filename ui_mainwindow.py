@@ -1,70 +1,148 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'gymapp.ui'
-##
-## Created by: Qt User Interface Compiler version 6.8.3
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QMainWindow, QMenuBar, QPushButton,
-    QSizePolicy, QStackedWidget, QStatusBar, QWidget)
+from PySide6.QtCore import Qt, QSize, QRect
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import (
+    QMainWindow, QWidget, QLabel, QPushButton,
+    QVBoxLayout, QHBoxLayout, QStackedWidget, QStatusBar,
+    QMenuBar
+)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
+            MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
+
         self.centralwidget = QWidget(MainWindow)
-        self.centralwidget.setObjectName(u"centralwidget")
-        self.progressButton = QPushButton(self.centralwidget)
-        self.progressButton.setObjectName(u"progressButton")
-        self.progressButton.setGeometry(QRect(40, 400, 75, 23))
-        self.goalButton = QPushButton(self.centralwidget)
-        self.goalButton.setObjectName(u"goalButton")
-        self.goalButton.setGeometry(QRect(190, 400, 75, 23))
-        self.logButton = QPushButton(self.centralwidget)
-        self.logButton.setObjectName(u"logButton")
-        self.logButton.setGeometry(QRect(340, 400, 75, 23))
-        self.profileButton = QPushButton(self.centralwidget)
-        self.profileButton.setObjectName(u"profileButton")
-        self.profileButton.setGeometry(QRect(540, 400, 75, 23))
+        self.centralwidget.setObjectName("centralwidget")
+        self.centralwidget.setStyleSheet("""
+            #centralwidget {
+                background-color: #f0f0f0;
+            }
+        """)
+
+        self.verticalLayout = QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName("verticalLayout")
+
+        self.headerLabel = QLabel(self.centralwidget)
+        self.headerLabel.setObjectName("headerLabel")
+        self.headerLabel.setText("🏋️‍♂️ TrackMate Gym")
+        self.headerLabel.setAlignment(Qt.AlignCenter)
+        self.headerLabel.setStyleSheet("""
+            QLabel {
+                font-size: 24px;
+                font-weight: bold;
+                color: #333;
+                margin: 10px 0;
+            }
+        """)
+        self.verticalLayout.addWidget(self.headerLabel)
+
         self.display = QStackedWidget(self.centralwidget)
-        self.display.setObjectName(u"display")
-        self.display.setGeometry(QRect(20, 10, 761, 371))
+        self.display.setObjectName("display")
+        self.display.setMinimumSize(QSize(0, 350))
+        self.display.setStyleSheet("""
+            QStackedWidget {
+                background-color: white;
+                border-radius: 10px;
+                border: 1px solid #ccc;
+            }
+        """)
         self.home = QWidget()
-        self.home.setObjectName(u"home")
+        self.home.setObjectName("home")
         self.display.addWidget(self.home)
+        self.verticalLayout.addWidget(self.display)
+
+        self.buttonLayout = QHBoxLayout()
+        self.buttonLayout.setObjectName("buttonLayout")
+        self.buttonLayout.setSpacing(15)
+        self.buttonLayout.setContentsMargins(20, 10, 20, 20)
+
+        font = QFont()
+        font.setBold(True)
+
+        self.progressButton = QPushButton(self.centralwidget)
+        self.progressButton.setObjectName("progressButton")
+        self.progressButton.setText("Progress")
+        self.progressButton.setFont(font)
+        self.progressButton.setStyleSheet("""
+            QPushButton {
+                background-color: #28a745;
+                color: white;
+                border-radius: 10px;
+                padding: 10px 20px;
+            }
+            QPushButton:hover {
+                background-color: #218838;
+            }
+        """)
+        self.buttonLayout.addWidget(self.progressButton)
+
+        self.goalButton = QPushButton(self.centralwidget)
+        self.goalButton.setObjectName("goalButton")
+        self.goalButton.setText("Goals")
+        self.goalButton.setFont(font)
+        self.goalButton.setStyleSheet("""
+            QPushButton {
+                background-color: #17a2b8;
+                color: white;
+                border-radius: 10px;
+                padding: 10px 20px;
+            }
+            QPushButton:hover {
+                background-color: #138496;
+            }
+        """)
+        self.buttonLayout.addWidget(self.goalButton)
+
+        self.logButton = QPushButton(self.centralwidget)
+        self.logButton.setObjectName("logButton")
+        self.logButton.setText("LogWorkout")
+        self.logButton.setFont(font)
+        self.logButton.setStyleSheet("""
+            QPushButton {
+                background-color: #ffc107;
+                color: black;
+                border-radius: 10px;
+                padding: 10px 20px;
+            }
+            QPushButton:hover {
+                background-color: #e0a800;
+            }
+        """)
+        self.buttonLayout.addWidget(self.logButton)
+
+        self.profileButton = QPushButton(self.centralwidget)
+        self.profileButton.setObjectName("profileButton")
+        self.profileButton.setText("Profile")
+        self.profileButton.setFont(font)
+        self.profileButton.setStyleSheet("""
+            QPushButton {
+                background-color: #dc3545;
+                color: white;
+                border-radius: 10px;
+                padding: 10px 20px;
+            }
+            QPushButton:hover {
+                background-color: #bd2130;
+            }
+        """)
+        self.buttonLayout.addWidget(self.profileButton)
+
+        self.verticalLayout.addLayout(self.buttonLayout)
+
         MainWindow.setCentralWidget(self.centralwidget)
+
         self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 26))
+        self.menubar.setObjectName("menubar")
+        self.menubar.setGeometry(QRect(0, 0, 800, 21))
         MainWindow.setMenuBar(self.menubar)
+
         self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
+        self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-
         self.display.setCurrentIndex(0)
 
-
-        QMetaObject.connectSlotsByName(MainWindow)
-    # setupUi
-
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.progressButton.setText(QCoreApplication.translate("MainWindow", u"progress", None))
-        self.goalButton.setText(QCoreApplication.translate("MainWindow", u"Goals", None))
-        self.logButton.setText(QCoreApplication.translate("MainWindow", u"LogWorkout", None))
-        self.profileButton.setText(QCoreApplication.translate("MainWindow", u"Profile", None))
-    # retranslateUi
-
+        MainWindow.setWindowTitle("TrackMate Gym")
