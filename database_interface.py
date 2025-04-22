@@ -458,7 +458,7 @@ class Database(AbstractDatabase):
         result = ["asd", "fajdh", "dfjk"]#test data for now
         return result
     
-    def setGoal(self, string):#adds a string to be added to the database
+    def addGoal(self, string):#adds a string to be added to the database
         return
 
     def updateGoal(self, string):#for when a goal is to be removed from the database
