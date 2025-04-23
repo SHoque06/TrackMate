@@ -4,8 +4,9 @@ import sqlite3
 
 class profilewidgetDisplay(Ui_profilewidgetDisplay, QWidget):
 
-    def __init__(self, user_id=1):  # Default to user_id=1, can be changed
+    def __init__(self, database, user_id=1):  # Default to user_id=1, can be changed
         super().__init__()
+        self.db = database
         self.setupUi(self)
         self.user_id = user_id
         self.load_user_data()

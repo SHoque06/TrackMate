@@ -14,16 +14,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.database = Database()
         QApplication.instance().aboutToQuit.connect(self.close_database)
 
-        self.progressDisplay = ProgressDisplay()
+        self.progressDisplay = ProgressDisplay(self.database)
         self.display.addWidget(self.progressDisplay)
 
         self.goalDisplay = goalwidgetDisplay(self.database)
         self.display.addWidget(self.goalDisplay)
 
-        self.profileDisplay = profilewidgetDisplay()
+        self.profileDisplay = profilewidgetDisplay(self.database)
         self.display.addWidget(self.profileDisplay)
 
-        self.logworkoutDisplay = logworkoutDisplay()
+        self.logworkoutDisplay = logworkoutDisplay(self.database)
         self.display.addWidget(self.logworkoutDisplay)
 
         self.progressButton.clicked.connect(self.progressButtonClicked)
