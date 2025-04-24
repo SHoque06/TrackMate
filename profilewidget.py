@@ -9,45 +9,38 @@ class profilewidgetDisplay(Ui_profilewidgetDisplay, QWidget):
         self.db = database
         self.setupUi(self)
         self.user_id = user_id
+        self.edit_mode = False
         self.load_user_data()
+        self.editButton.clicked.connect(self.toggle_edit_mode)
 
     def load_user_data(self):
-        conn = sqlite3.connect("gymapp.db")
-        cursor = conn.cursor()
+        self.userweight = self.db.getBodyweight()
+        self.username = self.db.getName()
+        self.usergender = self.db.getGender()
+        self.userage = self.db.getAge()
 
+        self.name.setText(str(self.username if self.username else ""))
+        self.age.setText(str(self.userage if self.userage else ""))
+        self.weight.setText(str(self.userweight if self.userweight else ""))
+        self.gender.setText(str(self.usergender if self.usergender else ""))
 
-
-
-        #cursor.execute("UPDATE users SET age = 25, gender = 'Male' WHERE user_id = 1;")
-
-        # Fetch user age and gender
-        #cursor.execute("SELECT age, gender FROM users WHERE user_id = ?", (self.user_id,))
-        #user_result = cursor.fetchone()
-        user_result = ("n/a","n/a")
-
-        # Fetch latest bodyweight entry
-        
-        #cursor.execute("""
-        #    SELECT bodyweight FROM bodyweight 
-        #    WHERE user_id = ? 
-        #    ORDER BY bodyweight_date DESC LIMIT 1
-        #""", (self.user_id,))
-        #weight_result = cursor.fetchone()
-        
-        weight_result = "n/a"
-
-        if user_result:
-            age, gender = user_result
-            self.age.setText(f"Age: {age if age else 'N/A'}")
-            self.gender.setText(f"Gender: {gender if gender else 'N/A'}")
+    def toggle_edit_mode(self):
+        if not self.edit_mode:
+            self.name.setReadOnly(False)
+            self.age.setReadOnly(False)
+            self.weight.setReadOnly(False)
+            self.gender.setReadOnly(False)
+            self.editButton.setText("Save")
         else:
-            self.age.setText("Age: N/A")
-            self.gender.setText("Gender: N/A")
+            self.name.setReadOnly(True)
+            self.age.setReadOnly(True)
+            self.weight.setReadOnly(True)
+            self.gender.setReadOnly(True)
+            self.editButton.setText("Edit")
 
-        if weight_result:
-            weight = weight_result[0]
-            self.weight.setText(f"Weight: {weight} kg")
-        else:
-            self.weight.setText("Weight: N/A")
+            self.db.setName(self.name.text())
+            self.db.setAge(int(self.age.text()))
+            self.db.logBodyweight(float(self.weight.text()))
+            self.db.setGender(self.gender.text())
 
-        conn.close()
+        self.edit_mode = not self.edit_mode
