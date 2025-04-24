@@ -281,6 +281,10 @@ class Database(AbstractDatabase):
     def logExercise(self, exercise_name, sets, reps, weight, user_id=None):
         # need to check that the info given is valid
         try:
+            sets = int(sets)
+            reps = int(reps)
+            weight = float(weight)
+
             if user_id is None:
                 user_id = self.user_id
             if not isinstance(exercise_name, str) or not exercise_name.strip():
@@ -297,18 +301,25 @@ class Database(AbstractDatabase):
                 raise ValueError("no session found for given user")
             # TODO one option is to start a new session atp
             exercise_name_id = self._getExerciseNameIdFromName(exercise_name.upper())
+            print(exercise_name_id, sets, reps, weight)
             self.cursor.execute("INSERT INTO exercise (session_id, exercise_name_id, sets, reps, weight) VALUES (?, ?, ?, ?, ?)", (last_session_id, exercise_name_id, sets, reps, weight))
             self.conn.commit()
+            return True
         except ValueError as e:
             print(f"Error logging exercise: {e}")
-            return None
+            return False
         except IndexError as e:
             print(f"Error: {e}. No sessions found for user ID {user_id}.Creating new session and will try again")
             self.createNewSession(user_id)
             self.logExercise(exercise_name, sets, reps, weight, user_id)
+
+
         except sqlite3.Error as e:
             print(f"Database error: {e}")
-            return None
+            return False
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            return False
 
     def logBodyweight(self, weight, user_id=None):
         try:
