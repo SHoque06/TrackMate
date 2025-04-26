@@ -25,9 +25,9 @@ class goalwidgetDisplay(Ui_goalwidgetDisplay, QWidget):
             text = self.inputGoal.text().strip()
             if text:  # only add non-empty text
                 self.goalList.addItem(text)
+                self.db.addGoal(text)
                 self.inputGoal.clear()  # clear after adding
                 self.inputGoal.setVisible(False)
-                self.db.addGoal(text)
         else:
             self.inputGoal.setVisible(True)
             self.inputGoal.setFocus()  # set focus when showing input
@@ -40,4 +40,4 @@ class goalwidgetDisplay(Ui_goalwidgetDisplay, QWidget):
         selected_items = self.goalList.selectedItems()  # Get selected items
         for item in selected_items:
             self.goalList.takeItem(self.goalList.row(item))  # Remove the selected item
-            self.db.updateGoal(item)
+            self.db.removeGoal(item.text())

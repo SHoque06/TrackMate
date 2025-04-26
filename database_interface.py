@@ -160,7 +160,6 @@ class Database(AbstractDatabase):
             );
         """)
 
-        # TODO not much point in this table. could integrate into exercise table
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS exercise_names (
                 exercise_name_id INTEGER PRIMARY KEY,
@@ -173,6 +172,7 @@ class Database(AbstractDatabase):
                 session_id INTEGER PRIMARY KEY,
                 user_id INTEGER,
                 session_date DATETIME NOT NULL,
+                duration FLOAT DEFAULT 0,
                 FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
             );
         ''')
@@ -188,6 +188,13 @@ class Database(AbstractDatabase):
                 FOREIGN KEY (session_id) REFERENCES sessions(session_id) ON DELETE CASCADE,
                 FOREIGN KEY (exercise_name_id) REFERENCES exercise_names(exercise_name_id)
             );
+        ''')
+
+        self.cursor.execute('''
+        CREATE TABLE IF NOT EXISTS goals (
+            goal_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL
+        );
         ''')
 
 
@@ -228,19 +235,40 @@ class Database(AbstractDatabase):
             print(f"Database error: {e}")
             return None
 
-    def createNewSession(self, user_id=None):
+    def createNewSession(self, duration=None, user_id=None):
+        print("Creating new session...")
         try:
             if user_id is None:
                 user_id = self.user_id
+            if not isinstance(duration, (int, float)) or duration < 0:
+                duration = 0
+            else:
+                duration = float(duration)
             if not isinstance(user_id, int) or user_id < 1:
                 raise ValueError("User ID must be a positive integer.")
+
+            # Have to update last session with correct duratoin
+            if duration is not None:
+
+
+                self.cursor.execute("SELECT session_id FROM sessions WHERE user_id = ? ORDER BY session_date DESC LIMIT 1",
+                    (user_id,))
+                last_session = self.cursor.fetchone()
+                if last_session:
+                    self.cursor.execute(
+                        "UPDATE sessions SET duration = ? WHERE session_id = ?",(duration, last_session[0]))
+
             self.cursor.execute("INSERT INTO sessions (user_id, session_date) VALUES (?, ?)", (user_id, datetime.now()))
+            print("Updated previous session with duration")
             self.conn.commit()
         except ValueError as e:
             print(f"Error creating session: {e}")
             return None
         except sqlite3.Error as e:
             print(f"Database error: {e}")
+            return None
+        except Exception as e:
+            print(f"error: {e}")
             return None
 
     def getAllSessions(self, user_id=None):
@@ -464,16 +492,28 @@ class Database(AbstractDatabase):
         except sqlite3.Error as e:
             print(f"Database error: {e}")
             return None
-        
-    def getGoals(self):#return list of all goals
-        result = ["asd", "fajdh", "dfjk"]#test data for now
-        return result
-    
-    def addGoal(self, string):#adds a string to be added to the database
-        return
 
-    def updateGoal(self, string):#for when a goal is to be removed from the database
-        return
+    def getGoals(self):
+        self.cursor.execute("SELECT name FROM goals")
+        rows = self.cursor.fetchall()
+        return [row[0] for row in rows]
+
+    def addGoal(self, string):
+        string = str(string)  # just to be safe
+        self.cursor.execute("INSERT INTO goals (name) VALUES (?)", (string,))
+        self.conn.commit()
+
+
+
+    def removeGoal(self, string):
+        try: # lazy
+            string = str(string)
+            self.cursor.execute("DELETE FROM goals WHERE name = ?", (string,))
+            self.conn.commit()
+        except Exception as e:
+            print(f"Error: {e}")
+            return None
+
 
 
 
@@ -491,34 +531,41 @@ class Database(AbstractDatabase):
 def tests():
     # running tests
     db = Database()
-    db._createDatabase()
-    db.createUser("test_user", "test_password", "test_email", 6, "MALE")
+
+    # Uncomment this to create a fresh database
+    # db._createDatabase()
+
     db.cursor.execute("SELECT * FROM users")
     print(db.cursor.fetchall())
-    db.cursor.execute("INSERT INTO sessions (user_id, session_date) VALUES (?, ?)", (2, datetime.now()))
-    db.removeUser("test_user")
 
+    # db.logBodyweight(80)
+    # db.logBodyweight(81)
+    # db.logBodyweight(82)
 
-    db.logBodyweight(80)
-    db.logBodyweight(81)
-    db.logBodyweight(82)
-
-    db.createNewExercise("bench", "upper")
-    db.createNewExercise("squat", "lower")
     db.createNewExercise("deadlift", "lower")
+    db.createNewExercise("bench press", "upper")
+    db.createNewExercise("squats", "lower")
+    db.createNewExercise("pull ups", "upper")
+    db.createNewExercise("leg press", "lower")
+    db.createNewExercise("overhead press", "upper")
+    db.createNewExercise("lat pulldowns", "upper")
+    db.createNewExercise("leg extensions", "lower")
+    db.createNewExercise("leg curls", "lower")
+    db.createNewExercise("lateral raises", "upper")
+    db.createNewExercise("bicep curls", "upper")
 
-
-    db.logExercise("bench", 3, 5, 10)
-
-    db.logExercise("squat", 3, 5, 20)
-    db.logExercise("squat", 3, 5, 30)
-    db.logExercise("deadlift", 3, 5, 30)
-
-    db.createNewSession()
-    db.logExercise("bench", 3, 5, 40)
-    db.logExercise("squat", 3, 5, 50)
-    db.logExercise("deadlift", 3, 5, 60)
-    db.logExercise("deadlift", 3, 5, 70)
+    #
+    # db.logExercise("bench", 3, 5, 10)
+    #
+    # db.logExercise("squat", 3, 5, 20)
+    # db.logExercise("squat", 3, 5, 30)
+    # db.logExercise("deadlift", 3, 5, 30)
+    #
+    # db.createNewSession()
+    # db.logExercise("bench", 3, 5, 40)
+    # db.logExercise("squat", 3, 5, 50)
+    # db.logExercise("deadlift", 3, 5, 60)
+    # db.logExercise("deadlift", 3, 5, 70)
 
 
 
@@ -535,6 +582,7 @@ def tests():
     print(db.cursor.fetchall())
     db.cursor.execute("SELECT * FROM exercise_names")
     print(db.cursor.fetchall())
+    print("sessions")
     db.cursor.execute("SELECT * FROM sessions")
     print(db.cursor.fetchall())
     db.cursor.execute("SELECT * FROM exercise")
