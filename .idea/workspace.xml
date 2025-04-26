@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a730f55c-fb2f-4273-8192-6bc0333f5c7f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goalwidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/goalwidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gymapp.db" beforeDir="false" afterPath="$PROJECT_DIR$/gymapp.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logworkout.py" beforeDir="false" afterPath="$PROJECT_DIR$/logworkout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progress.py" beforeDir="false" afterPath="$PROJECT_DIR$/progress.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +25,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Oddjobless/Prog-Group-CW.git&quot;,
-    &quot;accountId&quot;: &quot;e46937ad-797f-4a1c-8682-186619740e53&quot;
+    &quot;accountId&quot;: &quot;0b0cd6a8-675a-4744-b91a-bce18f9bf210&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -39,20 +36,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests in database_interface.py.executor": "Run",
-    "Python.goalwidget.executor": "Run",
-    "Python.logworkout.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests in database_interface.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.goalwidget.executor&quot;: &quot;Run&quot;,
+    &quot;Python.logworkout.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.progress.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ui_progress.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-0e3be3396995-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23339.19" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.24807.21" />
+        <option value="bundled-python-sdk-00717045f1d3-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.24807.21" />
       </set>
     </attachedChunks>
   </component>
@@ -64,7 +70,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744383644017</updated>
+      <workItem from="1745691871797" duration="1949000" />
+      <workItem from="1745694261229" duration="684000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Prog_Group_CW$goalwidget.coverage" NAME="goalwidget Coverage Results" MODIFIED="1745692095879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Prog_Group_CW$ui_progress.coverage" NAME="ui_progress Coverage Results" MODIFIED="1745692498222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Prog_Group_CW$main.coverage" NAME="main Coverage Results" MODIFIED="1745694605200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Prog_Group_CW$progress.coverage" NAME="progress Coverage Results" MODIFIED="1745692840019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
