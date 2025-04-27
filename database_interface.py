@@ -368,7 +368,7 @@ class Database(AbstractDatabase):
         if user_id is None:
             user_id = self.user_id
         # bodyweight, bodyweight_date
-        self.cursor.execute("SELECT bodyweight, bodyweight_date FROM bodyweight WHERE user_id = ? ORDER BY bodyweight_date DESC", (user_id,))
+        self.cursor.execute("SELECT bodyweight, bodyweight_date FROM bodyweight WHERE user_id = ? ORDER BY bodyweight_date ASC", (user_id,)) # changed desc to asc - hope this doesnt mess anything up
         return self.cursor.fetchall()
 
     def getExerciseHistoryByName(self, exercise_name, user_id=None):

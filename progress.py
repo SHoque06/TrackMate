@@ -10,6 +10,8 @@ class ProgressDisplay(QWidget):
         self.ui.setupUi(self)
 
         self.db = database
+        self.data = []
+        self.dates = []
 
         # Setup matplotlib graph
         self.figure = Figure()
@@ -20,9 +22,13 @@ class ProgressDisplay(QWidget):
         layout.addWidget(self.canvas)
 
         # Example data
-        self.dates = ["2025-01-01", "2025-02-01", "2025-03-01", "2025-04-01"]
+        self._dates = ["2025-01-01", "2025-02-01", "2025-03-01", "2025-04-01"]
         self.one_rm = [100, 110, 115, 120]  # 1RM data (kg)
         self.body_weight = [75, 76, 77, 76.5]  # Body weight data (kg)
+
+        # TODO needs code to add the name of each exercise to exerciseMenu
+
+        self.ui.exerciseMenu.addItem("Bodyweight")
 
         # Connect dropdown to update function
         self.ui.exerciseMenu.currentTextChanged.connect(self.update_graph)
@@ -39,13 +45,17 @@ class ProgressDisplay(QWidget):
         self.figure.clear()
         ax = self.figure.add_subplot(111)
 
-        if selected_graph == "exercise 1":
-            ax.plot(self.dates, self.one_rm, 'o-', color='blue', label='1RM (kg)')
-            ax.set_title("1RM Progress Over Time")
+        if selected_graph == "Bodyweight":
+            # fetch new data from db
+            weight, dates = zip(*self.db.getBodyweightHistory())
+            self.data = list(weight)
+            self.dates = list(dates)
+            ax.plot(self.dates, self.data, 'o-', color='green', label='Bodyweight (kg)')
+            ax.set_title("Bodyweight Over Time")
             ax.set_ylabel("Weight (kg)")
         else:
-            ax.plot(self.dates, self.body_weight, 'o-', color='green', label='Body Weight (kg)')
-            ax.set_title("Body Weight Over Time")
+            ax.plot(self._dates, self.one_rm, 'o-', color='blue', label='1RM (kg)')
+            ax.set_title("1RM Progress Over Time")
             ax.set_ylabel("Weight (kg)")
 
         # Shared graph settings
