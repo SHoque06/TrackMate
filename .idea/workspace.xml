@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a730f55c-fb2f-4273-8192-6bc0333f5c7f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progress.py" beforeDir="false" afterPath="$PROJECT_DIR$/progress.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +71,8 @@
       <updated>1744383644017</updated>
       <workItem from="1745691871797" duration="1949000" />
       <workItem from="1745694261229" duration="684000" />
+      <workItem from="1745789508013" duration="4000" />
+      <workItem from="1745933215143" duration="1956000" />
     </task>
     <servers />
   </component>
@@ -81,7 +82,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Prog_Group_CW$goalwidget.coverage" NAME="goalwidget Coverage Results" MODIFIED="1745692095879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Prog_Group_CW$ui_progress.coverage" NAME="ui_progress Coverage Results" MODIFIED="1745692498222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Prog_Group_CW$main.coverage" NAME="main Coverage Results" MODIFIED="1745694605200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Prog_Group_CW$main.coverage" NAME="main Coverage Results" MODIFIED="1745940925437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Prog_Group_CW$progress.coverage" NAME="progress Coverage Results" MODIFIED="1745692840019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
