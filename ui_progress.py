@@ -51,8 +51,8 @@ class Ui_progressDisplay(object):
 
         self.exerciseMenu = QComboBox(progressDisplay)
         self.exerciseMenu.setObjectName(u"exerciseMenu")
-        self.exerciseMenu.addItem("exercise 1")
-        self.exerciseMenu.addItem("exercise 2")
+        self.exerciseMenu.addItem("Bench Press")
+        self.exerciseMenu.addItem("Squats")
         self.exerciseMenu.setFixedHeight(40)
         self.main_layout.addWidget(self.exerciseMenu)
 
