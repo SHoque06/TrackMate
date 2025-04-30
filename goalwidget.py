@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QMessageBox
 from ui_goalwidget import Ui_goalwidgetDisplay
 from database_interface import Database
 
@@ -41,3 +41,4 @@ class goalwidgetDisplay(Ui_goalwidgetDisplay, QWidget):
         for item in selected_items:
             self.goalList.takeItem(self.goalList.row(item))  # Remove the selected item
             self.db.removeGoal(item.text())
+            QMessageBox.information(self, "Goal Removed", "Congratulations on completing your goal!")

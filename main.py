@@ -30,6 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.goalButton.clicked.connect(self.goalButtonClicked)
         self.logButton.clicked.connect(self.logButtonClicked)
         self.profileButton.clicked.connect(self.profileButtonClicked)
+        self.profileButtonClicked()
 
     def close_database(self):
         # This is called when application is closing
