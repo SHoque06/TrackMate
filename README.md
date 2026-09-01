@@ -27,7 +27,6 @@ This project was a fully collaborative effort developed by a 10-person student t
 
 ## Installation & Execution
 
-Create and activate a virtual environment, and launch:
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
